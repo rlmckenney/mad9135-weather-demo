@@ -1,0 +1,14 @@
+.App-header {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(220, 15%, 18%);
+  color: hsl(220, 0%, 98%);
+}
+
+.App-logo {
+  height: 60px;
+  padding-right: 0.5rem;
+}

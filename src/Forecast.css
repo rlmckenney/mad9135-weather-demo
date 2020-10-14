@@ -1,0 +1,41 @@
+.Forecast {
+  background-color: hsl(220, 15%, 43%);
+  color: hsl(220, 15%, 97%);
+  padding: 1rem;
+}
+
+.Forecast header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Forecast h2 {
+  text-transform: capitalize;
+}
+
+.Forecast .button {
+  background-color: hsl(220, 15%, 18%);
+  color: hsl(220, 15%, 97%);
+  padding: 1rem 1.5rem;
+}
+
+.Forecast .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+  align-items: flex-start;
+  gap: 1rem 1rem;
+}
+
+.ForecastCard {
+  background-color: hsl(220, 15%, 97%);
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 8px 0 hsl(220, 15%, 18%);
+  color: hsl(220, 15%, 18%);
+  padding: 1rem;
+  overflow: hidden;
+  height: 490px;
+}
+.ForecastCard:first-of-type {
+  margin-left: 0;
+}

@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { getGeolocation } from './map.service'
+import { getForecast } from './weather.service'
+import useLocalStorageState from './useLocalStorageState'
+import AppHeader from './AppHeader/AppHeader'
+import AppForm from './AppForm'
+import Forecast from './Forecast'
+import './App.css'
+import CurrentWeather from './CurrentWeather'
 
-function App() {
+function App () {
+  const [searchTerm, setSearchTerm] = useLocalStorageState(
+    'weather:search',
+    'Kanata, ON, CA'
+  )
+  const [location, setLocation] = useLocalStorageState('weather:location', {
+    lat: 0,
+    lon: 0
+  })
+  const [forecast, setForecast] = useLocalStorageState('weather:forecast', {})
+
+  useEffect(() => {
+    getGeolocation(searchTerm).then(setLocation)
+  }, [searchTerm, setLocation])
+
+  useEffect(() => {
+    getForecast({ coord: location }).then(setForecast)
+  }, [location, setForecast])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <AppHeader />
+      <AppForm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <CurrentWeather report={forecast.current} />
+      <Forecast forecast={forecast} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
